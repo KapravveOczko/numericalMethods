@@ -10,7 +10,7 @@ odporna jest (mam nadzieję) na wszystkie próby jej zepsucia
 def showMenu():
     next = True
     choseFunction = 0
-    choseMetod = 0
+    # choseMetod = 0
     choseCondition = 0
     choseA = 0 # początek przedziału
     choseB = 0 # koniec przedziału
@@ -30,17 +30,28 @@ def showMenu():
         else:
             next = False
 
-    next = True
-    print("wybierz metode:")
-    print("[A] - bisekcja")
-    print("[B] - siecznych")
+    # next = True
+    # print("wybierz metode:")
+    # print("[A] - bisekcja")
+    # print("[B] - siecznych")
+    #
+    # while next:
+    #     choseMetod = input("twoj wybor: ")
+    #     if choseMetod not in ["A", "B"]:
+    #         print("niepoprawyn wybor")
+    #     else:
+    #         next = False
 
-    while next:
-        choseMetod = input("twoj wybor: ")
-        if choseMetod not in ["A", "B"]:
-            print("niepoprawyn wybor")
-        else:
-            next = False
+    if choseFunction == "A":
+        choseFunction = 1
+    elif choseFunction == "B":
+        choseFunction = 2
+    elif choseFunction == "C":
+        choseFunction = 3
+    elif choseFunction == "D":
+        choseFunction = 4
+
+    drawSimplePlot(choseFunction, [2, -5, -3, 6])
 
     print("wyboerz początek i koniec przedziału: ")
     next = True
@@ -97,10 +108,10 @@ def showMenu():
                 print("niepoprawyn wybor [ =/= float]")
                 print("przykladowe przylizenie: 0.0001")
 
-    processMenu( choseFunction, choseMetod, choseA, choseB, choseIter, choseEps)
+    processMenu( choseFunction, choseA, choseB, choseIter, choseEps)
 
 
-def processMenu( choseFunction, choseMetod, choseA, choseB, choseIter, choseEps):
+def processMenu( choseFunction, choseA, choseB, choseIter, choseEps):
 
 
     """
@@ -125,32 +136,36 @@ def processMenu( choseFunction, choseMetod, choseA, choseB, choseIter, choseEps)
 
     # przetworzenie wyboru funkcji na zrozumiały dla funkcji getValue
     # narusza zasadę DRY ale działa
-    if choseFunction == "A":
-        choseFunction = 1
-    elif choseFunction == "B":
-        choseFunction = 2
-    elif choseFunction == "C":
-        choseFunction = 3
-    elif choseFunction == "D":
-        choseFunction = 4
+
 
     polly = [2, -5, -3, 6] # jedyne miejsce gdzie trzeba zmienic polly przy zmianie funkcji wielomianowej (A)
 
-    if choseMetod == "A":
-        try:
-            x0 = calculateBisection(choseFunction, choseA, choseB, polly,choseIter, choseEps)
-            x0 = float(x0)
-            drawPlot(choseFunction, choseA, choseB, polly, x0, choseEps)
-        except ValueError:
-            print(x0)
+    # if choseMetod == "A":
+    #     try:
+    #         x0 = calculateBisection(choseFunction, choseA, choseB, polly,choseIter, choseEps)
+    #         x0 = float(x0)
+    #         drawPlot(choseFunction, choseA, choseB, polly, x0, choseEps)
+    #     except ValueError:
+    #         print(x0)
+    #
+    # elif choseMetod =="B":
+    #
+    #     try:
+    #         x0 = calculateSecantMethod(choseFunction, choseA, choseB, polly,choseIter, choseEps)
+    #         x0 = float(x0)
+    #         drawPlot(choseFunction, choseA, choseB, polly, x0, choseEps)
+    #     except ValueError:
+    #         print(x0)
 
-    elif choseMetod =="B":
 
-        try:
-            x0 = calculateSecantMethod(choseFunction, choseA, choseB, polly,choseIter, choseEps)
-            x0 = float(x0)
-            drawPlot(choseFunction, choseA, choseB, polly, x0, choseEps)
-        except ValueError:
-            print(x0)
+    try:
+        x0b = calculateBisection(choseFunction, choseA, choseB, polly,choseIter, choseEps)
+        x0b = float(x0b)
+        x0s = calculateSecantMethod(choseFunction, choseA, choseB, polly,choseIter, choseEps)
+        x0s = float(x0s)
+        drawPlot(choseFunction, choseA, choseB, polly, x0b,x0s, choseEps)
+    except ValueError:
+        print(x0b)
+        print(x0s)
 
     return 0
