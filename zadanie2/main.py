@@ -7,4 +7,5 @@ testMatrixSize = 3
 testMatrixResult = [12, 33, 8]
 
 printMatrix(testMatrix, testMatrixSize)
-countMatrix(testMatrix,testMatrixSize,testMatrixResult,2)
+countMatrix(testMatrix,testMatrixSize,testMatrixResult,30)
+gauss_seidel(testMatrix,testMatrixResult,[0,0,0],30)
