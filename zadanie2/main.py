@@ -7,4 +7,4 @@ testMatrixSize = 3
 testMatrixResult = [12, 33, 8]
 
 printMatrix(testMatrix, testMatrixSize)
-countMatrix(testMatrix,testMatrixSize,testMatrixResult,1)
+countMatrix(testMatrix,testMatrixSize,testMatrixResult,2)

@@ -18,15 +18,16 @@ def countMatrix(matrix, matrixSize, testMatrixResult, iter):
             print("j: " + str(j))
 
 
-            for c in range(matrixSize):
-                if 1 + c == matrixSize:
-                    break
-                bufor = bufor + matrix[j][c+1] * output[c+1]
-                print ("bufor: " + str(bufor) + " = " + str(matrix[j][c+1]) + " * " + str(output[c+1]))
+            for c in range(matrixSize): #przelatuje po wszystkich z pominięciej obliczanej
+                if c ==j:
+                    continue
+                bufor = bufor + matrix[j][c] * output[c]
+                print ("bufor: " + str(bufor) + " = " + str(matrix[j][c]) + " * " + str(output[c]))
 
 
 
-            output[j] = (testMatrixResult[j] - bufor)/matrix[j][0]
+            output[j] = (testMatrixResult[j] - bufor)/matrix[j][j]
+            print ("output = (" + str(testMatrixResult[j]) + " - " + str(bufor) + ") / " + str(matrix[j][0]))
 
 
 
