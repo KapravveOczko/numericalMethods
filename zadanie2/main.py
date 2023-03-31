@@ -1,16 +1,10 @@
-# This is a sample Python script.
+from functions import *
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+print("hello world")
 
+testMatrix = [[3, 3, 1], [2, 5, 7], [2, 3, 2]]
+testMatrixSize = 3
+testMatrixResult = [12, 33, 8]
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+printMatrix(testMatrix, testMatrixSize)
+countMatrix(testMatrix,testMatrixSize,testMatrixResult,1)
