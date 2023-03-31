@@ -57,3 +57,35 @@ def gauss_seidel(A, b, x0, max_iter):
             x[i] = (b[i] - s) / A[i][i]
     print(x)
     return x
+
+def determinant(matrix):        #NOT TESTED
+
+    n = len(matrix)
+
+    # definicja warunku stopu
+    if n == 1:
+        return matrix[0][0]
+
+    # wyznaczenie wyznacznika rekurencyjnie
+    det = 0
+    sign = 1
+    for i in range(n):
+        # wyznaczanie podmacierzy
+        submatrix = []
+        for j in range(1, n):
+            row = []
+            for k in range(n):
+                if k != i:
+                    row.append(matrix[j][k])
+            submatrix.append(row)
+        # wywołanie rekurencyjne dla podmacierzy
+        det += sign * matrix[0][i] * determinant(submatrix)
+        sign *= -1
+
+    return det
+
+def checkDeterminant(matrix):
+    if determinant(matrix) == 0:
+        print("hyba cie pojebalo")
+    else:
+        print("przystepuje do pracy nad macierza")
