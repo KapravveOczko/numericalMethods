@@ -2,7 +2,7 @@ def printMatrix(matrix, matrixSize):
     for i in range(matrixSize):
         print(matrix[i])
 
-def countMatrix(matrix, matrixSize, testMatrixResult, iter):
+def countMatrix(matrix, matrixSize, testMatrixSolution, iter):
     """
     matrix = macierz
     matrixSize = wielkosc macierzy
@@ -29,7 +29,7 @@ def countMatrix(matrix, matrixSize, testMatrixResult, iter):
                 """
                 print ("bufor: " + str(bufor) + " = " + str(matrix[j][c]) + " * " + str(output[c]))
                 """
-            output[j] = (testMatrixResult[j] - bufor)/matrix[j][j]
+            output[j] = (testMatrixSolution[j] - bufor) / matrix[j][j]
             """
             print ("output = (" + str(testMatrixResult[j]) + " - " + str(bufor) + ") / " + str(matrix[j][j]))
             """
