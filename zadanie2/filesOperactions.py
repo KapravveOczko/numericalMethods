@@ -21,7 +21,22 @@ def getMatrixToLoad():
     matrixPath = "./przyklady/" + matrixPath
     matrixSolutionPath = "./przyklady/" + matrixSolutionPath
 
+    print("przystępuje do ładowania przykładu:")
     print(matrixPath)
     print(matrixSolutionPath)
+    print("ładowanie zakończone")
+
+    return matrixPath, matrixSolutionPath
+
+def getSampleToLoad(sample):
+    matrixPath = sample + ".txt"
+    matrixSolutionPath = "S" + matrixPath
+    matrixPath = "./przyklady/" + matrixPath
+    matrixSolutionPath = "./przyklady/" + matrixSolutionPath
+
+    print("przystępuje do ładowania przykładu:")
+    print(matrixPath)
+    print(matrixSolutionPath)
+    print("ładowanie zakończone")
 
     return matrixPath, matrixSolutionPath

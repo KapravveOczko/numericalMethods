@@ -37,27 +37,6 @@ def countMatrix(matrix, matrixSize, testMatrixSolution, iter):
     print (output)
     return 0
 
-#by chatGPT
-def gauss_seidel(A, b, x0, max_iter):
-    """
-    Metoda iteracyjna Gaussa-Seidla do rozwiązywania układów równań liniowych Ax = b.
-
-    :param A: macierz współczynników
-    :param b: wektor prawych stron
-    :param x0: wektor początkowy
-    :param max_iter: maksymalna liczba iteracji
-    :param tol: tolerancja
-    :return: wektor x będący rozwiązaniem układu równań
-    """
-    n = len(b)
-    x = x0.copy()
-    for k in range(max_iter):
-        for i in range(n):
-            s = sum(A[i][j] * x[j] for j in range(n) if j != i)
-            x[i] = (b[i] - s) / A[i][i]
-    print(x)
-    return x
-
 def determinant(matrix):        #NOT TESTED
 
     n = len(matrix)

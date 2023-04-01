@@ -1,6 +1,8 @@
 import filesOperactions
+import menu
 from functions import *
 from filesOperactions import *
+from menu import *
 
 print("hello world")
 
@@ -16,8 +18,11 @@ print("hello world")
 # countMatrix(testMatrix,testMatrixSize,testMatrixResult,30)
 # gauss_seidel(testMatrix,testMatrixResult,[0,0,0],30)
 
-a,b = filesOperactions.getMatrixToLoad()
+# a,b = filesOperactions.getMatrixToLoad()
+#
+# testMatrix,testMatrixSize,testMatrixResult = filesOperactions.loadMatrix(a,b)
+#
+# countMatrix(testMatrix,testMatrixSize,testMatrixResult,30)
 
-testMatrix,testMatrixSize,testMatrixResult = filesOperactions.loadMatrix(a,b)
+menu()
 
-countMatrix(testMatrix,testMatrixSize,testMatrixResult,30)
