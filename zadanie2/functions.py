@@ -40,11 +40,12 @@ def countMatrix(matrix, matrixSize, matrixSolution, iter, eps):
                 """
                 bufor = 0
 
-            if iter!=0:
-                method = method + 1
+            if iter==0:
                 if checkStop(matrix,matrixSize,matrixSolution,output,eps):
                     print(output)
                     return 0
+            else:
+                method = method + 1
 
     print (output)
     return 0
@@ -90,10 +91,10 @@ def checkStop(matrix,matrixSize,matrixResult,answer,eps):
         for i in range(matrixSize):
             test = test + matrix[j][i] * answer[i]
         if checkAnswer(test, matrixResult[j], eps):
-            return False
-    return True
+            return True
+    return False
 
 def checkAnswer(value,answer, eps):
-    if abs(value) - answer < eps:
+    if abs(value) - answer > eps:
         return False
     return True
