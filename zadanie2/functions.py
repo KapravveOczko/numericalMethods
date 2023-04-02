@@ -1,13 +1,12 @@
-from filesOperactions import loadSamplesAnswers
 def printMatrix(matrix, matrixSize):
     for i in range(matrixSize):
         print(matrix[i])
 
-def countMatrix(matrix, matrixSize, testMatrixSolution, iter):
+def countMatrix(matrix, matrixSize, matrixSolution, iter, eps):
     """
     matrix = macierz
     matrixSize = wielkosc macierzy
-    i = ilosc iteracji
+    iter = ilosc iteracji
     testMatrixResult = wartosci macierzy | moze by tak to połączyć z matrix ?
     """
 
@@ -15,8 +14,6 @@ def countMatrix(matrix, matrixSize, testMatrixSolution, iter):
         method = 1
     else:
         method = 0
-
-    answers = loadSamplesAnswers()
 
     output = [0] * matrixSize
     bufor = 0
@@ -37,7 +34,7 @@ def countMatrix(matrix, matrixSize, testMatrixSolution, iter):
                     """
                     print ("bufor: " + str(bufor) + " = " + str(matrix[j][c]) + " * " + str(output[c]))
                     """
-                output[j] = (testMatrixSolution[j] - bufor) / matrix[j][j]
+                output[j] = (matrixSolution[j] - bufor) / matrix[j][j]
                 """
                 print ("output = (" + str(testMatrixResult[j]) + " - " + str(bufor) + ") / " + str(matrix[j][j]))
                 """
@@ -45,9 +42,12 @@ def countMatrix(matrix, matrixSize, testMatrixSolution, iter):
 
             if iter!=0:
                 method = method + 1
-
+                if checkStop(matrix,matrixSize,matrixSolution,output,eps):
+                    print(output)
+                    return 0
 
     print (output)
+    return 0
 
 def determinant(matrix):
 
@@ -81,3 +81,19 @@ def checkDeterminant(matrix):
         return 0
     else:
         return 1
+
+def checkStop(matrix,matrixSize,matrixResult,answer,eps):
+
+    test = 0
+
+    for j in range(matrixSize):
+        for i in range(matrixSize):
+            test = test + matrix[j][i] * answer[i]
+        if checkAnswer(test, matrixResult[j], eps):
+            return False
+    return True
+
+def checkAnswer(value,answer, eps):
+    if abs(value) - answer < eps:
+        return False
+    return True

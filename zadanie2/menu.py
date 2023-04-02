@@ -10,6 +10,7 @@ def menu():
     test = ""
     validSamples = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"}
     iter = 0
+    testStop = ""
 
     print("program przedstawia metodę iteracyjną Gaussa-Seidla")
     print("")
@@ -45,19 +46,45 @@ def menu():
         matrix, matrixSize, matrixSolution = filesOperactions.loadMatrix(a,b)
     next = True
 
-    print("podaj ilosc iteracji")
+
+    print("podaj warunek stopu:")
+    print("a -> ilość iteracji")
+    print("b -> przybliżenie")
+
     while next:
+        testStop = input("--> ")
+        if testStop not in ["a", "b"]:
+            print("niepoprawyn wybor")
+        else:
+            next = False
+    next = True
+
+    if testStop == "a":
+        print("podaj ilosc iteracji")
+        while next:
+            while True:
+                try:
+                    iter = int(input("--> "))
+                    next = False
+                    eps=1e-3
+                    break
+                except ValueError:
+                    print("niepoprawyn wybor [=/= int]")
+
+    if testStop == "b":
         while True:
             try:
-                iter = int(input("--> "))
-                next = False
-                break
+                eps = float(input("--> "))
+                if eps > 0:
+                    break
+                print("niepoprawyn wybor [eps > 0]")
             except ValueError:
-                print("niepoprawyn wybor [=/= int]")
+                print("niepoprawyn wybor [ =/= float]")
+                print("przykladowe przylizenie: 0.0001")
 
     #obliczenia
     print("przystępuje do pracy nad macierzą")
 
     test = checkDeterminant(matrix)
     if test != 0:
-        functions.countMatrix(matrix,matrixSize,matrixSolution,iter)
+        functions.countMatrix(matrix,matrixSize,matrixSolution,iter,eps)
