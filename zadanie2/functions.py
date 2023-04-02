@@ -1,3 +1,4 @@
+from filesOperactions import loadSamplesAnswers
 def printMatrix(matrix, matrixSize):
     for i in range(matrixSize):
         print(matrix[i])
@@ -10,34 +11,45 @@ def countMatrix(matrix, matrixSize, testMatrixSolution, iter):
     testMatrixResult = wartosci macierzy | moze by tak to połączyć z matrix ?
     """
 
+    if iter == 0:
+        method = 1
+    else:
+        method = 0
+
+    answers = loadSamplesAnswers()
+
     output = [0] * matrixSize
     bufor = 0
 
-    for i in range(iter):               #ilosc iteracji
-        """
-        print(output)
-        print ("i: " + str(i))
-        """
-        for j in range(matrixSize):     #przejscie po wszystkich zmiennych
+    while method != iter:
             """
-            print("j: " + str(j))
+            print(output)
+            print ("i: " + str(i))
             """
-            for c in range(matrixSize): #przelatuje po wszystkich bufforach
-                if c ==j:               #z pominięciej obliczanej
-                    continue
-                bufor = bufor + matrix[j][c] * output[c]
+            for j in range(matrixSize):     #przejscie po wszystkich zmiennych
                 """
-                print ("bufor: " + str(bufor) + " = " + str(matrix[j][c]) + " * " + str(output[c]))
+                print("j: " + str(j))
                 """
-            output[j] = (testMatrixSolution[j] - bufor) / matrix[j][j]
-            """
-            print ("output = (" + str(testMatrixResult[j]) + " - " + str(bufor) + ") / " + str(matrix[j][j]))
-            """
-            bufor = 0
-    print (output)
-    return 0
+                for c in range(matrixSize): #przelatuje po wszystkich bufforach
+                    if c ==j:               #z pominięciej obliczanej
+                        continue
+                    bufor = bufor + matrix[j][c] * output[c]
+                    """
+                    print ("bufor: " + str(bufor) + " = " + str(matrix[j][c]) + " * " + str(output[c]))
+                    """
+                output[j] = (testMatrixSolution[j] - bufor) / matrix[j][j]
+                """
+                print ("output = (" + str(testMatrixResult[j]) + " - " + str(bufor) + ") / " + str(matrix[j][j]))
+                """
+                bufor = 0
 
-def determinant(matrix):        #NOT TESTED
+            if iter!=0:
+                method = method + 1
+
+
+    print (output)
+
+def determinant(matrix):
 
     n = len(matrix)
 
