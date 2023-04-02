@@ -65,6 +65,7 @@ def determinant(matrix):        #NOT TESTED
 
 def checkDeterminant(matrix):
     if determinant(matrix) == 0:
-        print("hyba cie pojebalo")
+        print("badana macierz jest nieoznaczona lub sprzeczna")
+        return 0
     else:
-        print("przystepuje do pracy nad macierza")
+        return 1

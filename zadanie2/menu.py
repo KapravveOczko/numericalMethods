@@ -56,4 +56,8 @@ def menu():
                 print("niepoprawyn wybor [=/= int]")
 
     #obliczenia
-    functions.countMatrix(matrix,matrixSize,matrixSolution,iter)
+    print("przystępuje do pracy nad macierzą")
+
+    test = checkDeterminant(matrix)
+    if test != 0:
+        functions.countMatrix(matrix,matrixSize,matrixSolution,iter)
