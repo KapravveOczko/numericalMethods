@@ -18,8 +18,8 @@ def menu():
     #wybór przykłądu
     while next:
         print("wybierz:")
-        print("a -> przykłady z zadania")
-        print("b -> własna macierz")
+        print("[a] -> przykłady z zadania")
+        print("[b] -> własna macierz")
         testChoice = input("--> ")
         if testChoice not in ["a", "b"]:
             print("niepoprawyn wybor")
@@ -48,8 +48,8 @@ def menu():
 
 
     print("podaj warunek stopu:")
-    print("a -> ilość iteracji")
-    print("b -> przybliżenie")
+    print("[a] -> ilość iteracji")
+    print("[b] -> przybliżenie")
 
     while next:
         testStop = input("--> ")
@@ -80,7 +80,7 @@ def menu():
                 print("niepoprawyn wybor [eps > 0]")
             except ValueError:
                 print("niepoprawyn wybor [ =/= float]")
-                print("przykladowe przylizenie: 0.0001")
+                print("przykladowe przylizenie: 0.01")
 
     #obliczenia
     print("przystępuje do pracy nad macierzą")

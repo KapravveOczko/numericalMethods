@@ -10,6 +10,8 @@ def countMatrix(matrix, matrixSize, matrixSolution, iter, eps):
     testMatrixResult = wartosci macierzy | moze by tak to połączyć z matrix ?
     """
 
+    testiter = 1
+
     if iter == 0:
         method = 1
     else:
@@ -39,13 +41,18 @@ def countMatrix(matrix, matrixSize, matrixSolution, iter, eps):
                 print ("output = (" + str(testMatrixResult[j]) + " - " + str(bufor) + ") / " + str(matrix[j][j]))
                 """
                 bufor = 0
-
+            print(testiter)
             if iter==0:
                 if checkStop(matrix,matrixSize,matrixSolution,output,eps):
                     print(output)
                     return 0
             else:
                 method = method + 1
+            if testiter != 0:
+                if checkStop(matrix, matrixSize, matrixSolution, output, eps):
+                    print(output)
+                    return 0
+            testiter = testiter + 1
 
     print (output)
     return 0
@@ -90,11 +97,12 @@ def checkStop(matrix,matrixSize,matrixResult,answer,eps):
     for j in range(matrixSize):
         for i in range(matrixSize):
             test = test + matrix[j][i] * answer[i]
+            #print("test " + str(test))
         if checkAnswer(test, matrixResult[j], eps):
             return True
     return False
 
 def checkAnswer(value,answer, eps):
-    if abs(value) - answer > eps:
+    if abs(abs(value) - answer) > eps:
         return False
     return True
