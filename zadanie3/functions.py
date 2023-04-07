@@ -1,4 +1,11 @@
 import numpy
+def linearFunction(x):
+    return 5*x-8
+
+"""tego nie jestem pewny"""
+def absoluteFunction(x):
+    x = abs(x)
+    return 5*x-8
 
 def polynomialFunction(x):
     return 2*x**3-5*x**2-3*x+6
@@ -6,11 +13,8 @@ def polynomialFunction(x):
 def trigonometricFunction(x):
     return -3*numpy.sin(x)+6*numpy.cos(x)
 
-def exponentialFunction(x):
-    return 5**x-2**x-2
-
 def complexFunction(x):
-    return -2*numpy.cos(x)-x**3+x**2-1
+    return 2*numpy.cos(x)-x*3-1
 
 def horner(poly, x):
     """
