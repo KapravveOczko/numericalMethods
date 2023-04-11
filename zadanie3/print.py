@@ -11,10 +11,10 @@ def plotInterpolation(f, a, b, n):
     :param n: liczba węzłów interpolacji
     """
 
-    x = np.linspace(a, b, 1000)         # 1000 punktów na wykresie
-    y = f(x)                            # wartości funkcji dla tych punktów
-    fig, ax = plt.subplots()            # tworzymy obiekt figury i osi
-    ax.plot(x, y, label='funkcja')      # rysujemy wykres funkcji
+    x = np.linspace(a, b, 1000)                  # 1000 punktów na wykresie
+    y = f(x)                                     # wartości funkcji dla tych punktów
+    fig, ax = plt.subplots()                     # tworzymy obiekt figury i osi
+    ax.plot(x, y, label='funkcja', color='b', linestyle='--')    # rysujemy wykres funkcji
 
     tabX = np.linspace(a, b, n)         # wyznaczamy węzły interpolacji
     tabY = f(tabX)                      # wartości funkcji dla węzłów interpolacji
@@ -23,7 +23,7 @@ def plotInterpolation(f, a, b, n):
 
     for i in range(1000):
         yi[i] = lagrangePolynomial(xi[i], n, a, b, tabY)                        # obliczamy wartości interpolowane
-    ax.plot(xi, yi, label='interpolacja')                                       # rysujemy wykres interpolowany
+    ax.plot(xi, yi, label='interpolacja', color='red')                                        # rysujemy wykres interpolowany
     ax.scatter(tabX, tabY, label='węzły interpolacji', color='red')             # rysujemy węzły interpolacji
 
     ax.legend()          # dodajemy legendę
@@ -32,5 +32,6 @@ def plotInterpolation(f, a, b, n):
 def plotFunction(func, start, end):
     x = np.linspace(start, end, 1000)
     y = func(x)
-    plt.plot(x, y, color='b')
+    plt.plot(x, y, label='funkcja', color='b', linestyle='--')
+    plt.legend()          # dodajemy legendę
     plt.show()
