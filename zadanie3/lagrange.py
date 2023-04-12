@@ -1,7 +1,7 @@
 import numpy
 def lagrangePolynomialinternal(x, n, i, tabX):
     """
-    wyznacza wartość L (wielomian bazowy)
+    funkcja wyznacza wartość L (wielomian bazowy)
     :param tabX: tablica wartości X
     :param x: wartość zmiennej x
     :param n: ilość iteracji
