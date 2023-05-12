@@ -1,10 +1,16 @@
 e = 2.7182818284585634
-
+from numpy import cos
 def functionOne(x):
     return x**2+7*x+100
-
 def functionTwo(x):
     return x ** 4 - x ** 3 - x ** 2 - x + 1
+
+def functionThree(x):
+    return cos(x) - x**3
+
+def functionFour(x):
+    return x**3 - 2 * x + abs(x - 5)
+
 
 """
 =======================================================================
