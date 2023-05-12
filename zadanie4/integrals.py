@@ -1,49 +1,72 @@
-from functions import *
+e = 2.7182818284585634
+
+def functionOne(x):
+    return x**2+7*x+100
+
+def functionTwo(x):
+    return x ** 4 - x ** 3 - x ** 2 - x + 1
 
 """
-a i b to granice przedziału całkowania,
-f(x) to całkowana funkcja,
-h = (b - a)/2 to odległość między węzłami,
-x0 = a, x1 = a + h, x2 = b to wartości węzłów.
-
-∫[a, b] f(x) dx ≈ h/3 * [f(x0) + 4f(x1) + f(x2)]
-
-Zasada działania metody polega na podzieleniu przedziału całkowania na mniejsze podprzedziały
-i zastosowaniu wzoru Simpsona na każdym z nich. Sumowanie wyników z poszczególnych podprzedziałów
-daje przybliżoną wartość całki na całym przedziale [a, b].
+=======================================================================
 """
 
+def simpson(a, b, f):
+    return (e**(- a) * f(a)+ 4 * e**(- (a + b) / 2) * f(((a + b) / 2)) + e**(- b) * f(b)) * (b - a) / 2 / 3
+
+def extendedSimpsona(a, b, f, eps):
+
+    result = simpson(a, b, f)
+    n = 2
+
+    while 1:
+
+        newResult = 0
+        h = (b - a) / (2 * n)
+        newA = a
+        newB = newA + 2 * h
+
+        for i in range(n):
+            i = simpson(newA, newB, f)
+            newResult += i
+            newA = newB
+            newB += 2 * h
+        if abs(newResult - result) < eps:
+            result = newResult
+            break
+        else:
+            result = newResult
+            n += 1
+
+    return result
+
+
+def newtonCotes(f, eps):
+    a = 0
+    delta = 1
+    sum = 0
+
+    while 1:
+        result = extendedSimpsona(a, a + delta, f, eps)
+        sum += result
+        a += delta
+        if abs(result) <= abs(eps):
+            break
+    return sum
+
+
 """
-a <- początek przedziału całkowania
-b <- koniec przedziału całkowania
-f <- funkcja
-
-:return: h/3 * [f(x0) + 4f(x1) + f(x2)]
+=======================================================================
 """
 
-def newtonCotes(a,b,f):
-    return (b - a)/6 * (f(a) + 4*f(a + (b - a)/2)+f(b))
+def Laguerre(f,grade):
+    result = 0
+    xi = xiLib[grade]
+    wi = wiLib[grade]
 
+    for i in range(grade):
+        result += wi[i] * f(xi[i])
+    return result
 
-'''
-===========================================================================================================
-'''
-
-
-"""
-Metoda kwadratury Laguerre'a jest oparta na rozwinięciu funkcji f(x) w szereg wielomianów Laguerre'a 
-i wykorzystuje odpowiednie wagi dla obliczenia przybliżonej wartości całki.
-
-Ogólny wzór kwadratury Laguerre'a dla całek o wadze e^(-x) na przedziale [0,+∞) można zapisać jako:
-
-∫+∞0 e^(-x) f(x) dx ≈ Σ(wi * f(xi))
-
-gdzie:
-
-wi to wagi kwadratury Laguerre'a,
-xi to węzły kwadratury Laguerre'a,
-f(x) to całkowana funkcja.
-"""
 
 xiLib = {
   1:  [1.0],
@@ -70,14 +93,3 @@ wiLib = {
   9:  [0.318204, 0.32737, 0.177211, 0.0474494, 0.00760734, 0.000764767, 4.22512e-05, 1.04669e-06, 6.33286e-09],
  10:  [0.287828, 0.308459, 0.176999, 0.059448, 0.0129531, 0.00180144, 0.000157379, 8.42404e-06, 1.98145e-07, 1.19217e-09]
 }
-
-
-
-def Laguerre(f,grade):
-    result = 0
-    xi = xiLib[grade]
-    wi = wiLib[grade]
-
-    for i in range(grade):
-        result = result + wi[i] * f(xi[i])
-    return result
