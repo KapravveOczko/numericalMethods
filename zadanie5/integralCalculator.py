@@ -1,3 +1,49 @@
+e = 2.7182818284585634
+
+def simpson(a, b, f):
+    return (e**(- a) * f(a)+ 4 * e**(- (a + b) / 2) * f(((a + b) / 2)) + e**(- b) * f(b)) * (b - a) / 2 / 3
+
+def extendedSimpsona(a, b, f, eps):
+
+    result = simpson(a, b, f)
+    n = 2
+
+    while 1:
+
+        newResult = 0
+        h = (b - a) / (2 * n)
+        newA = a
+        newB = newA + 2 * h
+
+        for i in range(n):
+            i = simpson(newA, newB, f)
+            newResult += i
+            newA = newB
+            newB += 2 * h
+        if abs(newResult - result) < eps:
+            result = newResult
+            break
+        else:
+            result = newResult
+            n += 1
+
+    return result
+
+
+def newtonCotes(f, eps):
+    a = 0
+    delta = 1
+    sum = 0
+
+    while 1:
+        result = extendedSimpsona(a, a + delta, f, eps)
+        sum += result
+        a += delta
+        if abs(result) <= abs(eps):
+            break
+    return sum
+
+
 def Laguerre(f,grade=10):
     result = 0
     xi = xiLib[grade]
