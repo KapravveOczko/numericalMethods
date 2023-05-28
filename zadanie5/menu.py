@@ -8,11 +8,17 @@ def menu():
     nodes = 0
 
     print("wybierz funkcje:")
+    # print("[A] - 5x-8")
+    # print("[B] - |5x|-8")
+    # print("[C] - 2x^3-5x^2-3x+6")
+    # print("[D] - -3sin(x)+6cos(x)")
+    # print("[E] - -2cos(x)-3x^2+x^3")
+
     print("[A] - 5x-8")
-    print("[B] - |5x|-8")
-    print("[C] - 2x^3-5x^2-3x+6")
-    print("[D] - -3sin(x)+6cos(x)")
-    print("[E] - -2cos(x)-3x^2+x^3")
+    print("[B] - |x|")
+    print("[C] - 2*x**2+x-2")
+    print("[D] - sin(x)")
+    print("[E] - cos(2*x**2+1)")
 
     while next:
         choseFunction = str(input("twoj wybor: "))
@@ -89,7 +95,7 @@ def menu():
     for i in range(len(xValues)):
         fi = f(xValues[i])
         fa = approximation[i]
-        print("x =", xValues[i], ", f(x) =", fi, ", approximation =", fa)
+        print("x =", xValues[i], ", f(x) =", fi, ", approximation =", fa, " błąd = ", abs(fi-fa))
         fApro.append(fa)
 
     for i in range(len(xBazeValues)):
@@ -97,6 +103,6 @@ def menu():
         # print(fi)
         fBaze.append(fi)
 
-    rysuj_wykres(xValues, fApro, xBazeValues, fBaze, -5, 10)
+    rysuj_wykres(xValues, fApro, xBazeValues, fBaze, -10, 10)
 
     return 0
