@@ -33,10 +33,10 @@ def calculate_hermite_norm(k, a, b):
     norm, _ = quad(integrand, a, b)
 
     return norm
-
+#
 # from scipy.special import hermite
 # import numpy as np
-
+#
 #
 # def calculate_approximation(n, f, a, b, x_values):
 #     coefficients = calculate_hermite_coefficients(n, f, a, b)
