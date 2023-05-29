@@ -1,24 +1,17 @@
 from approximation import *
-from printer import *
 from functions import *
 def menu():
     next = True
     choseA = -2
     choseB = 2
-    nodes = 0
+    num_nodes = 0
 
     print("wybierz funkcje:")
-    # print("[A] - 5x-8")
-    # print("[B] - |5x|-8")
-    # print("[C] - 2x^3-5x^2-3x+6")
-    # print("[D] - -3sin(x)+6cos(x)")
-    # print("[E] - -2cos(x)-3x^2+x^3")
-
     print("[A] - 5x-8")
-    print("[B] - |x|")
-    print("[C] - 2*x**2+x-2")
-    print("[D] - sin(x)")
-    print("[E] - cos(2*x**2+1)")
+    print("[B] - |5x|-8")
+    print("[C] - 2x^3-5x^2-3x+6")
+    print("[D] - -3sin(x)+6cos(x)")
+    print("[E] - -2cos(x)-3x^2+x^3")
 
     while next:
         choseFunction = str(input("twoj wybor: "))
@@ -52,8 +45,8 @@ def menu():
     print("podaj ilosc wezlow")
     while True:
         try:
-            nodes = int(input("twoj wybor: "))
-            if nodes > 0:
+            num_nodes = int(input("twoj wybor: "))
+            if num_nodes > 0:
                 break
             print("niepoprawyn wybor [nodes > 0]")
         except ValueError:
@@ -81,28 +74,11 @@ def menu():
         f = polynomialFunction
     elif choseFunction == "D":
         f = trigonometricFunction
-    elif choseFunction == "E":
+    else:
         f = complexFunction
 
-
-    xValues = np.linspace(choseA, choseB, nodes)
-    approximation = calculate_approximation(grade, f, choseA, choseB, xValues)
-    fApro = []
-    fBaze = []
-    xBazeValues = np.linspace(choseA, choseB, 100)
-
-    print()
-    for i in range(len(xValues)):
-        fi = f(xValues[i])
-        fa = approximation[i]
-        print("x =", xValues[i], ", f(x) =", fi, ", approximation =", fa, " błąd = ", abs(fi-fa))
-        fApro.append(fa)
-
-    for i in range(len(xBazeValues)):
-        fi = f(xBazeValues[i])
-        # print(fi)
-        fBaze.append(fi)
-
-    rysuj_wykres(xValues, fApro, xBazeValues, fBaze, -10, 10)
+    nodes = np.random.uniform(choseA,choseB, size=(num_nodes, 2))
+    nodes[:, 1] = f(nodes[:, 0])
+    hermite_approximation(nodes, grade, f, choseA, choseB)
 
     return 0
